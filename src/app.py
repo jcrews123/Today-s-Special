@@ -10,8 +10,11 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from dotenv import load_dotenv
 
 # from models import Person
+load_dotenv()
+
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
@@ -20,7 +23,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 # database condiguration
-db_url = os.getenv("DATABASE_URL")
+db_url = "postgresql://postgres:Jcrewz12341234@localhost:5432/Recipes"
 if db_url is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace(
         "postgres://", "postgresql://")
